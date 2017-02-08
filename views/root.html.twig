@@ -1,8 +1,50 @@
-<html>
-<head>
-    <title>Main - Tamagotchi</title>
-</head>
-<body>
-    <h1>Your Tamagotchi</h1>
-</body>
-</html>
+{% if tamagotchis is empty %}
+    <html>
+    <head>
+        <title>Main - Tamagotchi</title>
+    </head>
+    <body>
+        <h1>Your Tamagotchi</h1>
+        <form action='/' method='post'>
+            <label for='name'>Name your tamagotchi: </label>
+            <input id='name' name='name' type='text'>
+            <button type='submit'>Play Game</button>
+        </form>
+    </body>
+    </html>
+{% elseif tamagotchis[0].getHunger <= 0%}
+    <html>
+    <p>{{ tamagotchis[0].name }} is dead</p>
+    <form action='/new-game' method='post'>
+        <button type='submit'>New Game</button>
+    </form>
+    </html>
+{% else %}
+    <html>
+    <head>
+        <title>Main - Tamagotchi</title>
+    </head>
+    <body>
+        <h1>Your Tamagotchi: {{ tamagotchis[0].getName }}</h1>
+        <p>Hunger level: {{ tamagotchis[0].getHunger }}</p>
+        <p>Happiness: {{ tamagotchis[0].getHappiness }}</p>
+        <p>Rest level: {{ tamagotchis[0].getSleep }}</p>
+
+        <form action='/fed' method='post'>
+            <button type='submit'>Feed</button>
+        </form>
+        <form action='/play' method='post'>
+            <button type='submit'>Play</button>
+        </form>
+        <form action='/rest' method='post'>
+            <button type='submit'>Rest</button>
+        </form>
+        <form action='/time' method='post'>
+            <button type='submit'>Time</button>
+        </form>
+        <form action='/new-game' method='post'>
+            <button type='submit'>New Game</button>
+        </form>
+    </body>
+    </html>
+{% endif %}

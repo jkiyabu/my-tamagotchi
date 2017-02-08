@@ -13,7 +13,13 @@
             $this->hunger = 25;
         }
 
-        function
+        function setName($new_name) {
+            $this->name = $new_name;
+        }
+
+        function getName() {
+            return $this->name;
+        }
 
         function setSleep($new_sleep) {
             $this->sleep = $new_sleep;
@@ -31,7 +37,25 @@
             return $this->happiness;
         }
 
-        function set
+        function setHunger($new_hunger) {
+            $this->hunger = $new_hunger;
+        }
+
+        function getHunger() {
+            return $this->hunger;
+        }
+
+        function save() {
+            array_push($_SESSION['tamagotchis'], $this);
+        }
+
+        static function getAll() {
+            return $_SESSION['tamagotchis'];
+        }
+
+        static function deleteAll() {
+            $_SESSION['tamagotchis'] = array();
+        }
 
 
 

@@ -1,0 +1,20 @@
+<html>
+<head>
+    <title>Main - Tamagotchi</title>
+</head>
+<body>
+    <h1>Your Tamagotchi: {{ newTamagotchi[0].getName }}</h1>
+    <form action='/fed' method='post'>
+        <button type='submit'>Feed</button>
+    </form>
+    <form method='post'>
+        <button type='submit'>Play</button>
+    </form>
+    <form action='/rest' method='post'>
+        <button type='submit'>Rest</button>
+    </form>
+    <form action='/' method='post'>
+        <button type='submit'>Time</button>
+    </form>
+</body>
+</html>
