@@ -1,4 +1,7 @@
+{{ include('base.html.twig') }}
+
 {% if tamagotchis is empty %}
+    <!DOCTYPE html>
     <html>
     <head>
         <title>Main - Tamagotchi</title>
@@ -12,12 +15,16 @@
         </form>
     </body>
     </html>
-{% elseif tamagotchis[0].getHunger <= 0%}
+{% elseif tamagotchis[0].getHunger <= 0 or tamagotchis[0].getSleep <= 0 or tamagotchis[0].getHappiness <= 0 %}
     <html>
-    <p>{{ tamagotchis[0].name }} is dead</p>
+    <body>
+    <div class='container'>
+    <h2>{{ tamagotchis[0].name }} is dead</h2>
     <form action='/new-game' method='post'>
-        <button type='submit'>New Game</button>
+        <button type='submit' class='btn btn-danger'>New Game</button>
     </form>
+    </div>
+    </body>
     </html>
 {% else %}
     <html>
@@ -25,26 +32,48 @@
         <title>Main - Tamagotchi</title>
     </head>
     <body>
-        <h1>Your Tamagotchi: {{ tamagotchis[0].getName }}</h1>
-        <p>Hunger level: {{ tamagotchis[0].getHunger }}</p>
-        <p>Happiness: {{ tamagotchis[0].getHappiness }}</p>
-        <p>Rest level: {{ tamagotchis[0].getSleep }}</p>
-
-        <form action='/fed' method='post'>
-            <button type='submit'>Feed</button>
-        </form>
-        <form action='/play' method='post'>
-            <button type='submit'>Play</button>
-        </form>
-        <form action='/rest' method='post'>
-            <button type='submit'>Rest</button>
-        </form>
-        <form action='/time' method='post'>
-            <button type='submit'>Time</button>
-        </form>
-        <form action='/new-game' method='post'>
-            <button type='submit'>New Game</button>
-        </form>
+        <div class="container">
+            <h1>Your Tamagotchi: {{ tamagotchis[0].getName }}</h1>
+            <p>Hunger level: {{ tamagotchis[0].getHunger }}</p>
+            <p>Happiness: {{ tamagotchis[0].getHappiness }}</p>
+            <p>Rest level: {{ tamagotchis[0].getSleep }}</p>
+            <div class="row">
+            <div class="col-sm-1">
+            <div class='form-group'>
+                <form action='/fed' method='post'>
+                    <button type='submit' class='btn btn-warning'>Feed</button>
+                </form>
+            </div>
+            </div>
+            <div class="col-sm-1">
+              <div class='form-group'>
+                  <form action='/play' method='post'>
+                      <button type='submit' class='btn btn-primary'>Play</button>
+                  </form>
+              </div>
+            </div>
+            <div class="col-sm-1">
+              <div class='form-group'>
+                  <form action='/rest' method='post'>
+                      <button type='submit' class='btn btn-info'>Rest</button>
+                  </form>
+              </div>
+            </div>
+            <div class="col-sm-1">
+              <div class='form-group'>
+                  <form action='/time' method='post'>
+                      <button type='submit' class='btn btn-danger'>Time</button>
+                  </form>
+              </div>
+            </div>
+            <div class="col-sm-1">
+              <div class='form-group'>
+                  <form action='/new-game' method='post'>
+                      <button type='submit' class='btn btn-success'>New Game</button>
+                  </form>
+              </div>
+            </div>
+        </div>
     </body>
     </html>
 {% endif %}
